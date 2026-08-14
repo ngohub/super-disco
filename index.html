@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عين المعرفة | منصة تعليمية تفاعلية لطلاب الصف الأول الإعدادي</title>
+  <meta name="description" content="منصة عين المعرفة تساعد طلاب الصف الأول الإعدادي في دراسة العلوم والجغرافيا والتاريخ من خلال الفيديوهات الوثائقية والمسابقات التفاعلية الشيقة.">
+
+  <!-- Google Fonts: Tajawal & Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Design System CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Celebration Confetti Layer -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Sticky Header / Navbar -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon-wrapper">
+          <i class="fas fa-eye"></i>
+        </div>
+        <div class="logo-text">
+          عين <span>المعرفة</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active"><i class="fas fa-home"></i> الرئيسية</a></li>
+        <li><a href="#videos-section" class="nav-link"><i class="fas fa-film"></i> الدروس الوثائقية</a></li>
+        <li><a href="#" id="nav-leaderboard-btn" class="nav-link"><i class="fas fa-trophy"></i> لوحة الصدارة</a></li>
+        <li><a href="#" id="nav-badges-btn" class="nav-link"><i class="fas fa-medal"></i> شاراتي</a></li>
+      </ul>
+
+      <div class="user-stats-bar">
+        <div class="stat-pill points" title="نقاطك التراكمية">
+          <i class="fas fa-star"></i>
+          <span id="user-points">100 ⭐</span>
+        </div>
+        <div class="stat-pill streak" title="أيام التحدي المستمرة">
+          <i class="fas fa-fire"></i>
+          <span id="user-streak">3 أيام 🔥</span>
+        </div>
+
+        <button class="icon-btn" id="sound-toggle-btn" title="تشغيل/إيقاف الأصوات">
+          <i class="fas fa-volume-up"></i>
+        </button>
+        <button class="icon-btn" id="theme-toggle-btn" title="تبديل المظهر">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-wrapper">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-graduation-cap"></i> مخصص لطلاب الصف الأول الإعدادي 🎓
+        </div>
+        <h1 class="hero-title">
+          استكشف العلوم والتاريخ عبر <br>
+          <span class="gradient-text">الوثائقيات والمسابقات التفاعلية</span>
+        </h1>
+        <p class="hero-description">
+          منصة "عين المعرفة" تبسط لك منهج 1 إعدادي من خلال مشاهدة فيديوهات وثائقية ممتعة، تليها اختبارات تفاعلية فورية تمنحك النقاط والشارات وتضعك على قمة أبطال المعرفة!
+        </p>
+
+        <div style="margin-bottom: 1.5rem; max-width: 480px; position: relative;">
+          <input type="text" id="search-videos-input" placeholder="ابحث عن درس (مثال: الذرة، الفضاء، بناة الأهرام...)" 
+                 style="width: 100%; padding: 0.85rem 1.25rem; border-radius: var(--radius-full); border: 2px solid var(--border-color); font-family: var(--font-family); font-size: 1rem; background: var(--bg-card); color: var(--text-main); outline: none; box-shadow: var(--shadow-sm);">
+          <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#videos-section" class="btn-primary">
+            <i class="fas fa-play-circle"></i> ابدأ مشاهدة الدروس
+          </a>
+          <a href="#" onclick="document.getElementById('nav-leaderboard-btn').click(); return false;" class="btn-secondary">
+            <i class="fas fa-crown"></i> جدول الأوائل
+          </a>
+        </div>
+      </div>
+
+      <!-- Mascot Card -->
+      <div class="hero-mascot-card">
+        <div class="mascot-avatar-container">
+          <svg class="mascot-avatar" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="url(#owlGrad)"/>
+            <circle cx="35" cy="40" r="14" fill="white"/>
+            <circle cx="65" cy="40" r="14" fill="white"/>
+            <circle cx="35" cy="40" r="7" fill="#1e1e2e"/>
+            <circle cx="65" cy="40" r="7" fill="#1e1e2e"/>
+            <circle cx="37" cy="38" r="2.5" fill="white"/>
+            <circle cx="67" cy="38" r="2.5" fill="white"/>
+            <polygon points="50,48 44,58 56,58" fill="#f59e0b"/>
+            <path d="M 30 75 Q 50 88 70 75" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <defs>
+              <linearGradient id="owlGrad" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.25rem; font-weight: 800;">عينون 🦉 (مرشد المعرفة)</h3>
+        <div class="mascot-speech-bubble" id="mascot-bubble-text">
+          "مرحباً بك يا أبطال 1 إعدادي! شاهد الفيديو الوثائقي بتركيز، فلدينا أسئلة ممتعة تنتظرك بعد الفيديو لتجمع النقاط!"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos & Quizzes Main Section -->
+  <main class="container" id="videos-section" style="padding-top: 1rem;">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title"><i class="fas fa-video" style="color: var(--primary);"></i> الدروس الوثائقية والمسابقات</h2>
+        <p class="section-subtitle">اختر الدرس المطلوب، شاهد الوثائقي، ثم اجتاز الاختبار الفوري</p>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="category-tabs" id="category-tabs-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- Videos Grid -->
+    <div class="videos-grid" id="videos-grid">
+      <!-- Rendered dynamically via app.js -->
+    </div>
+  </main>
+
+  <!-- Video Modal -->
+  <div class="modal-overlay" id="video-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-film" style="color: var(--primary);"></i>
+          <span id="video-modal-title">عنوان الفيديو</span>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="video-player-container">
+          <iframe src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info-box">
+          <div>
+            <span class="quiz-status-pill pending" id="video-modal-subject">علوم</span>
+            <p id="video-modal-desc" style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.95rem;"></p>
+          </div>
+          <button class="btn-primary" id="start-quiz-from-video-btn" style="white-space: nowrap;">
+            <i class="fas fa-pen-nib"></i> ابدأ الاختبار الآن
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div class="modal-overlay" id="quiz-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-tasks" style="color: var(--primary);"></i>
+          <span>اختبار التقييم الفوري</span>
+        </div>
+        <button class="modal-close-btn" onclick="window.quizController.closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Question Active View -->
+        <div id="quiz-question-view">
+          <div class="quiz-progress-bar-container">
+            <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+          </div>
+          <div class="quiz-question-counter" id="quiz-counter">السؤال 1 من 3</div>
+          <h3 class="quiz-question-title" id="quiz-question-title">نص السؤال هنا...</h3>
+
+          <div class="quiz-options-grid" id="quiz-options-grid">
+            <!-- Options populated by quiz.js -->
+          </div>
+
+          <div class="explanation-box" id="quiz-explanation-box" style="display: none;">
+            <!-- Explanation populated by quiz.js -->
+          </div>
+
+          <div style="text-align: left; margin-top: 1rem;">
+            <button class="btn-primary" id="quiz-next-btn" style="display: none;">
+              السؤال التالي ⬅️
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Result View -->
+        <div id="quiz-result-view" class="quiz-result-view" style="display: none;">
+          <div class="result-icon-badge">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h2 class="result-title" id="quiz-result-title">أحسنت صنعاً!</h2>
+          <div class="result-score-badge" id="quiz-result-score">3 من 3</div>
+          <p id="quiz-result-desc" style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+            لقد تمكنت من اجتياز بنك أسئلة الدرس بنجاح!
+          </p>
+
+          <button class="btn-primary" onclick="window.quizController.closeModal()" style="margin: 0 auto;">
+            <i class="fas fa-check-circle"></i> العودة للدروس
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Badges Modal -->
+  <div class="modal-overlay" id="badges-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-medal" style="color: var(--accent-gold);"></i>
+          <span>شارات الإنجاز والتميز 🏅</span>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="badges-grid" id="badges-grid-container">
+          <!-- Rendered via app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard Modal -->
+  <div class="modal-overlay" id="leaderboard-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fas fa-crown" style="color: var(--accent-gold);"></i>
+          <span>جدول أبطال الصف الأول الإعدادي 🏆</span>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="leaderboard-list" id="leaderboard-list-container">
+          <!-- Rendered via app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">
+        منصة عين المعرفة التعليمية © 2026 - جميع الحقوق محفوظة لطلاب الصف الأول الإعدادي 🎓
+      </p>
+      <p style="font-size: 0.85rem;">
+        صُممت المنصة لشرح منهج العلوم والدراسات الاجتماعية باستخدام الوثائقيات والرسوم المتحركة والاختبارات التفاعلية.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
